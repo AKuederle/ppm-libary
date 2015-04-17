@@ -1,2 +1,1 @@
-# ppm-libary
-A python module to interactively manipulate matplotlib plots and lines
+This branch is simply used to deploy some pictures for the project README
