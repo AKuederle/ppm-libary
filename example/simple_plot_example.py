@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 plt.figure()
 x=np.arange(0,10,1)
 plt.plot(x,x,"o")        
-plt.plot(x,2*x,"o")
+plt.plot(x,2*x,"+")
 plt.plot(x,3*x,"o")
 plt.plot(x,4*x,"-")
+plt.plot(x,5*x,"--")
