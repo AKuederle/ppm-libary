@@ -58,3 +58,28 @@ def gl(line, identifier="id", fig="_current_"):
         print(line_id)
         return MultiLine(list(map(lines.__getitem__, line_id)))
         
+class MultiLine:
+    def __init__(self, lines):
+        if hasattr(lines, "__getitem__") is True:
+            self.lines = lines
+        else:
+            self.lines = [lines]
+        
+    def __getitem__(self, index):
+        return MultiLine(self.lines[index])
+    
+    def setp(self, propertie, value):
+        for line in self.lines:
+            plt.setp(line, propertie, value)
+            
+    def hide(self):
+        self.setp("visible", False)
+    #alias:
+    h = hide
+    
+    def show(self):
+        self.setp("visible", True)
+    #alias
+    s = show
+    
+            
