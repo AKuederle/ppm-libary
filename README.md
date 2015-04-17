@@ -34,13 +34,13 @@ A expected workflow would look something like this:
     ppm.gl("o", "marker")
     ```
 
-ppm.gl() returns a MulitLine class object. The MultiLine class can handle a list of lines and add certain properties to them.
+    ppm.gl() returns a MulitLine class object. The MultiLine class can handle a list of lines and add certain properties to them.
 
 4. Call a class-function to manipulate the selected lines.
 
-Hide line 3 from the plot:
-``` python
-ppm.gl(3).hide()
-```
+    Hide line 3 from the plot:
+    ``` python
+    ppm.gl(3).hide()
+    ```
 
 
