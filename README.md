@@ -17,4 +17,4 @@ Instead of changing your code and redraw your entire figure, you can use some fu
 
 A expected workflow would look something like this:
 
-![Your pretty plot with all your important data](akuederle.github.io/ppm-library/readme_figs/simple_line_0.PNG)
+![Your pretty plot with all your important data](http://akuederle.github.io/ppm-library/readme_figs/simple_line_0.PNG)
