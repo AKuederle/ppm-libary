@@ -1,6 +1,6 @@
 # ppm-library
 
-This module has the porpoise of providing a few easy to use functions and classes to quickly manipulate a already processed matplotlib plot without redrawing it.
+This module has the purpose of providing a few easy to use functions and classes to quickly manipulate an already processed matplotlib plot without redrawing it.
 
 Its target use cases are the manipulation and the highlighting of certain parts of a plot, while showing it as part of a presentation or while observing the plotted data.
 
