@@ -42,20 +42,22 @@ def wiw(fig="_current_", props=["c", "marker"], _return=False):
     else:
         _print_table(props, data)
         
-def gl(line, identifier="id", fig="_current_"):
+def gl(line="_all_", identifier="id", fig="_current_"):
     """ Get a one or more lineobjekts based on a certain line-propertie."""
     if identifier == "id":
         props = []
     else:
         props = [identifier]
     lines, data =  wiw(fig=fig, props=props, _return=True)
-    if identifier == "id":
+    if line == "_all_":
+        return MultiLine(lines)
+    elif identifier == "id":
         if hasattr(line, "__getitem__") is False:
             line = [line]
         return MultiLine(list(map(lines.__getitem__, line)))
+
     else:
         line_id = [i for i, j in enumerate(data) if j[-1] == line]
-        print(line_id)
         return MultiLine(list(map(lines.__getitem__, line_id)))
         
 class MultiLine:
