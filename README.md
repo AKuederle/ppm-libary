@@ -11,7 +11,7 @@ This project is not jet a full module and more a work-in-process proof of concep
 
 ## Working example
 
-Imagine you have some multiline plot prepared to show your boss in a meeting. He is impressed by your pretty figure, but to better understand the data he wants see each line by its own or have this very dominant one temporary removed from the plot to better observe the other lines.
+Imagine you have a multi-line plot prepared to show your boss during a meeting. He is impressed by your pretty figure, but to better understand the data he wants see each line by its own or have this very dominant one temporary removed from the plot to better observe the other lines.
 
 Instead of changing your code and redraw your entire figure, you can use some functionality provided by this module to easily accomplish such things.
 
