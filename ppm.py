@@ -55,7 +55,6 @@ def gl(line="_all_", identifier="id", fig="_current_"):
         if hasattr(line, "__getitem__") is False:
             line = [line]
         return MultiLine(list(map(lines.__getitem__, line)))
-
     else:
         line_id = [i for i, j in enumerate(data) if j[-1] == line]
         return MultiLine(list(map(lines.__getitem__, line_id)))
@@ -71,8 +70,18 @@ class MultiLine:
         return MultiLine(self.lines[index])
     
     def setp(self, propertie, value):
+        if hasattr(value, "__getitem__") is True:
+            for line, val in zip(self.lines, value):
+                plt.setp(line, propertie, val)
+        else:
+            for line in self.lines:
+                plt.setp(line, propertie, value)
+                
+    def getp(self, propertie):
+        props = []
         for line in self.lines:
-            plt.setp(line, propertie, value)
+            props.append(plt.getp(line, propertie))
+        return props
             
     def hide(self):
         self.setp("visible", False)
@@ -81,7 +90,60 @@ class MultiLine:
     
     def show(self):
         self.setp("visible", True)
-    #alias
+    #alias:
     s = show
     
+    def focus(self):
+        self.focus_off()
+        for line in gl().lines:
+            if plt.getp(line, "visible") is True:
+                line._temp_hide = True
+                plt.setp(line, "visible", False)
+            else:
+                line._temp_hide = False
+        for line in self.lines:
+            line._temp_hide = False
+        self.show()
+        
+    #alias:
+    f = focus 
+    
+    def focus_off(self):
+        for line in gl().lines:
+            if hasattr(line, "_temp_hide") and line._temp_hide is True:
+                plt.setp(line, "visible", True)
+    
+    #alias:
+    fo = focus_off
+    
+    def highlight(self):
+        for line, width, size, z in zip(self.lines, self.getp("linewidth"), self.getp("markersize"), self.getp("zorder")):
+            if not hasattr(line, "_highlight") or line._highlight is False:
+                line._non_high_width = width
+                line._non_high_size = size
+                line._non_high_z = z
+                plt.setp(line, "linewidth", 3*width)
+                plt.setp(line, "markersize", 1.5*size)
+                plt.setp(line, "zorder", 0)
+                line._highlight = True
+            else:
+                pass
             
+    #alias:
+    hi = highlight
+    
+    def highlight_off(self, _all=False):
+        if _all is True:
+            lines = gl().lines
+        else:
+            lines = self.lines
+        for line in lines:
+            if hasattr(line, "_highlight") and line._highlight is True:
+                plt.setp(line, "linewidth", line._non_high_width)
+                plt.setp(line, "markersize", line._non_high_size)
+                plt.setp(line, "zorder", line._non_high_z)
+                line._highlight = False
+                
+    #alias:
+    ho = highlight_off
+        
